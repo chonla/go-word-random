@@ -40,7 +40,7 @@ func main() {
 
 func newWordList() *wordList {
 	rand.Seed(time.Now().Unix())
-	words, e := readLines("./words.txt")
+	words, _ := readLines("./words.txt")
 
 	l := &wordList{
 		words: words,
