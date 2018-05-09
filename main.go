@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -22,8 +23,12 @@ func main() {
 	// Routes
 	e.GET("/", word)
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	// Start server
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(":" + port))
 }
 
 // Handler
