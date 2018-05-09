@@ -2,9 +2,9 @@ package main
 
 import (
 	"bufio"
+	"math/rand"
 	"net/http"
 	"os"
-	"math/rand"
 	"time"
 
 	"github.com/labstack/echo"
@@ -15,8 +15,8 @@ type wordResult struct {
 	Word string `json:"word"`
 }
 
-type wordList struct{
-	words string[]
+type wordList struct {
+	words []string
 }
 
 func main() {
@@ -45,7 +45,7 @@ func newWordList() *wordList {
 	l := &wordList{
 		words: words,
 	}
-	
+
 	return l
 }
 
