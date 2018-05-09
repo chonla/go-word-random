@@ -12,6 +12,8 @@ type wordResult struct {
 	Word string `json:"word"`
 }
 
+type wordList struct{}
+
 func main() {
 	// Echo instance
 	e := echo.New()
@@ -31,8 +33,18 @@ func main() {
 	e.Logger.Fatal(e.Start(":" + port))
 }
 
+func newWordList() *wordList {
+	l := &wordList{}
+	return l
+}
+
+func (l *wordList) Get() *wordResult {
+	return &wordResult{Word: "dog"}
+}
+
 // Handler
 func word(c echo.Context) error {
-	word := &wordResult{Word: "cat"}
+	list := newWordList()
+	word := list.Get()
 	return c.JSON(http.StatusOK, word)
 }
